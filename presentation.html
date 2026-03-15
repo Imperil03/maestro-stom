@@ -47,7 +47,7 @@
     }
     .p-hero h1 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; line-height: 1.15; margin-bottom: 18px; }
     .p-hero h1 span { color: var(--gold); }
-    .p-hero__sub { font-size: 1.15rem; opacity: .75; max-width: 620px; margin: 0 auto 36px; }
+    .p-hero__sub { font-size: 1.15rem; opacity: .75; max-width: 700px; margin: 0 auto 36px; }
     .p-hero__meta { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; }
     .p-hero__meta-item { text-align: center; }
     .p-hero__meta-num { font-size: 1.6rem; font-weight: 800; }
@@ -141,7 +141,7 @@
     /* ── STRUCTURE ── */
     .structure-list { display: flex; flex-direction: column; gap: 8px; counter-reset: struct; }
     .structure-item {
-      display: flex; align-items: center; gap: 16px; padding: 14px 20px;
+      display: flex; align-items: flex-start; gap: 16px; padding: 14px 20px;
       background: #fff; border-radius: 10px;
       box-shadow: 0 1px 6px rgba(0,0,0,.03);
       counter-increment: struct; font-size: .92rem;
@@ -150,7 +150,7 @@
       content: counter(struct); width: 32px; height: 32px; flex-shrink: 0;
       background: var(--blue); color: #fff; border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: .78rem; font-weight: 800;
+      font-size: .78rem; font-weight: 800; margin-top: 2px;
     }
     .structure-item strong { color: var(--blue); }
     .structure-item--new { border-left: 3px solid var(--green); }
@@ -160,6 +160,18 @@
       padding: 2px 8px; border-radius: 4px;
       font-size: .65rem; font-weight: 700; letter-spacing: .3px;
     }
+    .structure-item__desc {
+      display: block; font-size: .82rem; color: var(--gray);
+      margin-top: 4px; line-height: 1.5;
+    }
+
+    /* ── PAGE DIVIDER ── */
+    .page-divider {
+      background: linear-gradient(135deg, var(--blue) 0%, #001854 100%);
+      color: #fff; padding: 60px 0; text-align: center;
+    }
+    .page-divider h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 900; margin-bottom: 12px; }
+    .page-divider p { font-size: 1rem; opacity: .7; max-width: 600px; margin: 0 auto; }
 
     /* ── FOOTER ── */
     .p-footer { background: var(--blue); color: rgba(255,255,255,.6); padding: 40px 0; text-align: center; font-size: .85rem; }
@@ -198,14 +210,13 @@
 <!-- ── HERO ── -->
 <section class="p-hero">
   <div class="p-container">
-    <div class="p-hero__badge">Презентация доработок</div>
+    <div class="p-hero__badge">Отчёт о доработках</div>
     <h1>Доработка сайта<br>клиники <span>«Маэстро»</span></h1>
-    <p class="p-hero__sub">SEO-оптимизация, улучшение структуры и контента главной страницы для роста видимости в поиске и конверсии в записи</p>
+    <p class="p-hero__sub">Технические исправления, SEO-оптимизация, переработка структуры и контента главной страницы и страницы услуги «Имплантация зубов»</p>
     <div class="p-hero__meta">
-      <div class="p-hero__meta-item"><div class="p-hero__meta-num">19</div><div class="p-hero__meta-label">доработок</div></div>
-      <div class="p-hero__meta-item"><div class="p-hero__meta-num">7</div><div class="p-hero__meta-label">новых блоков</div></div>
-      <div class="p-hero__meta-item"><div class="p-hero__meta-num">+40–70%</div><div class="p-hero__meta-label">рост видимости</div></div>
-      <div class="p-hero__meta-item"><div class="p-hero__meta-num">+20–40%</div><div class="p-hero__meta-label">рост конверсии</div></div>
+      <div class="p-hero__meta-item"><div class="p-hero__meta-num">15</div><div class="p-hero__meta-label">общих задач по сайту</div></div>
+      <div class="p-hero__meta-item"><div class="p-hero__meta-num">2</div><div class="p-hero__meta-label">страницы переработаны</div></div>
+      <div class="p-hero__meta-item"><div class="p-hero__meta-num">15</div><div class="p-hero__meta-label">новых блоков на стр. услуги</div></div>
     </div>
   </div>
 </section>
@@ -213,216 +224,341 @@
 <!-- ── NAV ── -->
 <nav class="p-nav">
   <div class="p-nav__inner">
+    <a href="#general-tasks">Общие задачи</a>
     <a href="#why">Зачем это нужно</a>
-    <a href="#structure">Новая структура</a>
-    <a href="#problems">Что исправляем</a>
-    <a href="#compare">Было / Стало</a>
-    <a href="#table">Сводная таблица</a>
-    <a href="#results">Ожидаемый эффект</a>
+    <a href="#structure-main">Доработка главной</a>
+    <a href="#problems">Исправления на главной</a>
+    <a href="#structure-service">Доработка стр. услуг</a>
+    <a href="#service-problems">Исправления на стр. услуг</a>
+    <a href="#goals">Цели</a>
   </div>
 </nav>
 
-<!-- ── WHY ── -->
-<section class="p-section" id="why">
-  <div class="p-container">
-    <h2 class="p-section-title">Зачем нужны доработки</h2>
-    <p class="p-section-sub">Текущий сайт работает, но теряет пациентов из-за четырёх ключевых проблем</p>
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- ═══ ОБЩИЕ ЗАДАЧИ ПО САЙТУ ═══ -->
+<!-- ══════════════════════════════════════════════════════════════ -->
 
-    <div class="results-grid">
-      <div class="result-card">
-        <div class="result-card__icon">🔍</div>
-        <div class="result-card__num" style="font-size:1.3rem; color:var(--red);">Нет Title и Description</div>
-        <div class="result-card__label">Поисковики не понимают, о чём страница. Сниппет в выдаче формируется случайным образом.</div>
-      </div>
-      <div class="result-card">
-        <div class="result-card__icon">📊</div>
-        <div class="result-card__num" style="font-size:1.3rem; color:var(--red);">Нет цен на главной</div>
-        <div class="result-card__label">Пользователь уходит искать прайс к конкурентам. Страница не ранжируется по ценовым запросам.</div>
-      </div>
-      <div class="result-card">
-        <div class="result-card__icon">❓</div>
-        <div class="result-card__num" style="font-size:1.3rem; color:var(--red);">Нет FAQ, статей, гарантий</div>
-        <div class="result-card__label">Возражения пациента не закрываются. Упущен трафик по информационным запросам.</div>
-      </div>
-      <div class="result-card">
-        <div class="result-card__icon">📝</div>
-        <div class="result-card__num" style="font-size:1.3rem; color:var(--red);">Текст без конкретики</div>
-        <div class="result-card__label">«Мы рады пригласить Вас…» — не убеждает. Нет цифр, фактов, доказательств.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── STRUCTURE ── -->
-<section class="p-section p-section--light" id="structure">
+<section class="p-section" id="general-tasks">
   <div class="p-container">
-    <h2 class="p-section-title">Новая структура главной страницы</h2>
-    <p class="p-section-sub">15 блоков вместо 10. Каждый выполняет конкретную задачу — привлечь, убедить, конвертировать.</p>
-    <div class="structure-list">
-      <div class="structure-item"><strong>Шапка (sticky)</strong> — логотип, навигация, 2 телефона, кнопка записи</div>
-      <div class="structure-item"><strong>Hero</strong> — H1 с городом, теги услуг, счётчики доверия, CTA-кнопки</div>
-      <div class="structure-item"><strong>Услуги</strong> — 9 карточек с ценами и кнопками «Подробнее»</div>
-      <div class="structure-item structure-item--new"><strong>Популярные услуги и цены</strong> — таблица 11 позиций с кнопками записи</div>
-      <div class="structure-item"><strong>О клинике</strong> — факты и цифры вместо рекламного текста</div>
-      <div class="structure-item"><strong>Преимущества</strong> — 6 конкретных обещаний вместо абстракций</div>
-      <div class="structure-item structure-item--new"><strong>До / После</strong> — галерея результатов с фильтрами по услугам</div>
-      <div class="structure-item"><strong>Технологии</strong> — 6 карточек с пользой для пациента</div>
-      <div class="structure-item"><strong>Команда</strong> — все 14 врачей, категории, ссылки на профили</div>
-      <div class="structure-item structure-item--new"><strong>Гарантии</strong> — 4 карточки с конкретными сроками</div>
-      <div class="structure-item structure-item--new"><strong>Лицензии и сертификаты</strong></div>
-      <div class="structure-item"><strong>Отзывы</strong> — реальные отзывы с 2ГИС и ПроДокторов, рейтинг</div>
-      <div class="structure-item structure-item--new"><strong>Полезные статьи</strong> — 3 экспертные статьи от врачей</div>
-      <div class="structure-item structure-item--new"><strong>FAQ</strong> — 7 вопросов-ответов + Schema.org разметка</div>
-      <div class="structure-item"><strong>Форма записи</strong> — с выбором услуги и времени звонка</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PROBLEMS ── -->
-<section class="p-section" id="problems">
-  <div class="p-container">
-    <h2 class="p-section-title">Что исправляем и почему</h2>
-    <p class="p-section-sub">Каждое изменение обосновано: проблема → решение → эффект</p>
+    <h2 class="p-section-title">Общие задачи по сайту</h2>
+    <p class="p-section-sub">Технические и SEO-доработки, которые касаются всего сайта в целом. Эти задачи не привязаны к конкретной странице — они влияют на работу и видимость всего сайта.</p>
 
     <div class="problems-grid">
 
       <div class="problem-card">
         <div class="problem-card__num">1</div>
         <div class="problem-card__content">
-          <div class="problem-card__title">Title и Description</div>
-          <div class="problem-card__tags">
-            <span class="tag tag--seo">SEO</span>
-            <span class="tag tag--conv">CTR</span>
-          </div>
-          <div class="problem-card__issue"><strong>Проблема:</strong> Title — общий («Стоматологическая клиника Маэстро»), без города и услуг. Description отсутствует полностью. В выдаче сниппет формируется случайным текстом.</div>
-          <div class="problem-card__fix"><strong>Решение:</strong> Title с городом + ключевыми услугами. Description 155 символов с УТП, телефоном и рассрочкой.</div>
-          <div class="problem-card__why">Пользователь в выдаче видит, что клиника в его городе, видит услуги и телефон прямо в сниппете. CTR вырастает на 20–30%.</div>
+          <div class="problem-card__title">Добавить мета-теги (Title, Description, H1)</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span><span class="tag tag--conv">CTR</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> На страницах сайта отсутствуют или некорректно заполнены мета-теги. Из-за этого поисковые системы не понимают, о чём каждая страница, а в результатах поиска вместо понятного описания клиники отображается случайный текст.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Добавляем на все страницы корректные Title, Description и заголовок H1. Мета-теги уже подготовлены. Благодаря этому в поисковой выдаче будет отображаться понятное название страницы и описание клиники с услугами — это привлекает больше кликов.</div>
         </div>
       </div>
 
       <div class="problem-card">
         <div class="problem-card__num">2</div>
         <div class="problem-card__content">
-          <div class="problem-card__title">Schema.org и Open Graph</div>
-          <div class="problem-card__tags">
-            <span class="tag tag--seo">SEO</span>
-          </div>
-          <div class="problem-card__issue"><strong>Проблема:</strong> Нет структурированных данных. Клиника не получает расширенных сниппетов (звёзды, адрес, часы). При шаринге — безликий URL.</div>
-          <div class="problem-card__fix"><strong>Решение:</strong> JSON-LD разметка Dentist (адрес, телефоны, рейтинг, график) + FAQPage (7 вопросов) + OG-теги.</div>
-          <div class="problem-card__why">Расширенные сниппеты со звёздами увеличивают CTR на 20–35%. FAQ-разметка выводит вопросы прямо в выдачу, увеличивая размер сниппета в 2–3 раза.</div>
+          <div class="problem-card__title">Убрать скрытые заголовки H1</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> На некоторых страницах главный заголовок (H1) есть в коде, но скрыт — пользователь его не видит. Поисковые системы расценивают это как попытку манипуляции и могут снижать позиции сайта.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Убираем скрытие и делаем заголовки видимыми. На каждой странице будет один понятный H1, соответствующий её содержанию. Это улучшает восприятие страницы и поисковиками, и пациентами.</div>
         </div>
       </div>
 
       <div class="problem-card">
         <div class="problem-card__num">3</div>
         <div class="problem-card__content">
-          <div class="problem-card__title">Скрытый H1 и иерархия заголовков</div>
-          <div class="problem-card__tags">
-            <span class="tag tag--seo">SEO</span>
-          </div>
-          <div class="problem-card__issue"><strong>Проблема:</strong> H1 скрыт через CSS (<code>class="invise"</code>). Визуальный заголовок баннера — это <code>&lt;div&gt;</code>, а не заголовок. Поисковики расценивают скрытый текст как манипуляцию.</div>
-          <div class="problem-card__fix"><strong>Решение:</strong> Видимый H1 «Стоматологическая клиника «Маэстро» в Сургуте». Чистая иерархия H1 → H2 → H3.</div>
-          <div class="problem-card__why">H1 с геозапросом — один из сильнейших факторов ранжирования в локальном поиске.</div>
+          <div class="problem-card__title">Исправить выпадающее меню на десктопе</div>
+          <div class="problem-card__tags"><span class="tag tag--ux">UX</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Выпадающее меню исчезает, когда курсор уходит с текста ссылки. Пользователь не успевает навести мышку на нужный пункт подменю — оно закрывается. Это мешает навигации по сайту.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Меняем логику работы меню: оно не будет закрываться, пока курсор находится в области выпадающего блока. Пользователи смогут спокойно выбирать нужный раздел.</div>
         </div>
       </div>
 
       <div class="problem-card">
         <div class="problem-card__num">4</div>
         <div class="problem-card__content">
-          <div class="problem-card__title">Hero-секция — узкое покрытие</div>
-          <div class="problem-card__tags">
-            <span class="tag tag--seo">SEO</span>
-            <span class="tag tag--ux">UX</span>
-            <span class="tag tag--conv">Конверсия</span>
-          </div>
-          <div class="problem-card__issue"><strong>Проблема:</strong> Один слайд «Цифровая имплантация в Сургуте» + кнопка. Пациент, ищущий ЛОР или брекеты, может уйти, не увидев своей услуги.</div>
-          <div class="problem-card__fix"><strong>Решение:</strong> Заголовок о клинике в целом, теги всех 6 направлений, 4 счётчика доверия (2007, 14 врачей, 9+ направлений, рейтинг 4.8), CTA-кнопки.</div>
-          <div class="problem-card__why">Первый экран покрывает все услуги. Пациент видит масштаб клиники и остаётся на сайте. Показатель отказов снижается на 15–25%.</div>
+          <div class="problem-card__title">Исправить меню в мобильной версии</div>
+          <div class="problem-card__tags"><span class="tag tag--ux">UX</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> В мобильной версии нельзя попасть на страницы корневых разделов (например «О компании», «Взрослая стоматология»), если у них есть подменю — нажатие только раскрывает список подразделов, но не ведёт на саму страницу.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Добавляем возможность перехода на страницу корневого раздела. Пользователи с телефонов смогут попасть на все важные страницы сайта.</div>
         </div>
       </div>
 
       <div class="problem-card">
         <div class="problem-card__num">5</div>
         <div class="problem-card__content">
-          <div class="problem-card__title">Услуги без цен</div>
-          <div class="problem-card__tags">
-            <span class="tag tag--seo">SEO</span>
-            <span class="tag tag--conv">Конверсия</span>
-          </div>
-          <div class="problem-card__issue"><strong>Проблема:</strong> Карточки услуг — только иконка и название. Цены отсутствуют. По запросу «имплантация Сургут цена» страница проигрывает конкурентам.</div>
-          <div class="problem-card__fix"><strong>Решение:</strong> Карточки с описанием, ценой «от ... р» и кнопкой. Плюс отдельная таблица «Популярные услуги и цены» — 11 позиций.</div>
-          <div class="problem-card__why">Страница начинает ранжироваться по ценовым запросам. Пациент получает ответ без лишних кликов — конверсия растёт.</div>
+          <div class="problem-card__title">Удалить пустые автоматически генерируемые страницы</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> На сайте автоматически создаётся большое количество пустых страниц без контента (например страницы вида /snyatie-koronki-mk/, /tsementirovka-koronki-kultevoy-vkladki/ и подобные). Эти страницы ухудшают качество сайта в глазах поисковых систем.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Находим источник автоматической генерации (предположительно раздел «прайс-лист») и отключаем создание пустых страниц. Это позволит поисковикам сосредоточиться на полезных страницах сайта и не тратить ресурсы на пустые.</div>
         </div>
       </div>
 
       <div class="problem-card">
         <div class="problem-card__num">6</div>
         <div class="problem-card__content">
-          <div class="problem-card__title">Текст «О клинике» — вода без фактов</div>
-          <div class="problem-card__tags">
-            <span class="tag tag--ux">UX</span>
-            <span class="tag tag--trust">Доверие</span>
-          </div>
-          <div class="problem-card__issue"><strong>Проблема:</strong> «Мы рады пригласить Вас…», «Двери «Маэстро» всегда открыты…» — рекламный текст без единой цифры. Список преимуществ: «Удобно расположенная клиника», «Гибкая ценовая политика».</div>
-          <div class="problem-card__fix"><strong>Решение:</strong> Конкретные факты: год основания, количество врачей, название оборудования (Medit i700, Leica M320). Цифровые счётчики.</div>
-          <div class="problem-card__why">Конкретика повышает экспертный сигнал (E-E-A-T) — это критически важно для медицинских сайтов в Яндексе и Google.</div>
+          <div class="problem-card__title">Убрать дублирование таблицы цен</div>
+          <div class="problem-card__tags"><span class="tag tag--ux">UX</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> В разделе «Прайс-лист» таблица с ценами отображается два раза на одной странице. Это путает пользователей и выглядит как ошибка.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Убираем дубликат, оставляем одну таблицу. Страница становится аккуратной и понятной.</div>
         </div>
       </div>
 
       <div class="problem-card">
         <div class="problem-card__num">7</div>
         <div class="problem-card__content">
-          <div class="problem-card__title">Нет блока «До / После»</div>
-          <div class="problem-card__tags">
-            <span class="tag tag--trust">Доверие</span>
-            <span class="tag tag--conv">Конверсия</span>
-          </div>
-          <div class="problem-card__issue"><strong>Проблема:</strong> Визуальные доказательства результата полностью отсутствуют. 67% пациентов считают фото «до/после» решающим фактором при выборе.</div>
-          <div class="problem-card__fix"><strong>Решение:</strong> Галерея «Результаты лечения» с фильтрами по услугам и привязкой к конкретным врачам.</div>
-          <div class="problem-card__why">Фотографии результатов также индексируются в поиске по картинкам — дополнительный канал трафика.</div>
+          <div class="problem-card__title">Добавить Open Graph разметку</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span><span class="tag tag--conv">CTR</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Когда кто-то отправляет ссылку на сайт в мессенджерах (Telegram, WhatsApp, VK), отображается просто URL без заголовка, описания и картинки. Это выглядит непривлекательно и не вызывает доверия.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Добавляем OG-разметку на все страницы. При отправке ссылки будет отображаться название клиники, описание страницы и логотип. Это повышает кликабельность и доверие к ссылкам.</div>
         </div>
       </div>
 
       <div class="problem-card">
         <div class="problem-card__num">8</div>
         <div class="problem-card__content">
-          <div class="problem-card__title">Нет гарантий, лицензий, FAQ</div>
-          <div class="problem-card__tags">
-            <span class="tag tag--trust">Доверие</span>
-            <span class="tag tag--seo">SEO</span>
-            <span class="tag tag--conv">Конверсия</span>
-          </div>
-          <div class="problem-card__issue"><strong>Проблема:</strong> Стоматология — дорогая услуга. Пациент хочет знать гарантии, видеть лицензию, получить ответ на вопрос «Больно ли?». Всего этого нет.</div>
-          <div class="problem-card__fix"><strong>Решение:</strong> Блок гарантий (5 лет / 3 года / 2 года). Лицензии. FAQ из 7 вопросов с разметкой Schema.org.</div>
-          <div class="problem-card__why">FAQ попадает в «Быстрые ответы» Яндекса. Гарантии закрывают главное возражение. Лицензия — обязательный E-E-A-T сигнал для медицины.</div>
+          <div class="problem-card__title">Добавить микроразметку Dentist (Schema.org)</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Поисковые системы не получают структурированную информацию о клинике (адрес, телефон, график работы) в машиночитаемом формате. Из-за этого в результатах поиска не отображаются расширенные данные о клинике.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Добавляем специальную разметку на главную страницу: название, адрес, телефоны, график работы, ссылки на карты. Это улучшает отображение клиники в локальном поиске и на картах.</div>
         </div>
       </div>
 
       <div class="problem-card">
         <div class="problem-card__num">9</div>
         <div class="problem-card__content">
-          <div class="problem-card__title">Нет блога / экспертных статей</div>
-          <div class="problem-card__tags">
-            <span class="tag tag--seo">SEO</span>
-            <span class="tag tag--trust">Доверие</span>
-          </div>
-          <div class="problem-card__issue"><strong>Проблема:</strong> Главная не ссылается на экспертный контент. Информационный трафик упущен полностью.</div>
-          <div class="problem-card__fix"><strong>Решение:</strong> Блок «Полезные статьи» — 3 карточки (имплантация, брекеты, лечение во сне) со ссылками на статьи блога.</div>
-          <div class="problem-card__why">Экспертный контент — главный E-E-A-T сигнал. Блог привлекает трафик по широким информационным запросам и усиливает вес коммерческих страниц через внутреннюю перелинковку.</div>
+          <div class="problem-card__title">Настроить редиректы на основное зеркало сайта</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Сайт открывается по нескольким адресам одновременно (с www и без, через http и https). Поисковики воспринимают это как разные сайты с одинаковым содержанием, что негативно влияет на позиции.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Настраиваем автоматическое перенаправление всех вариантов адресов на один основной — https://maestro-stom.ru/. Поисковики перестанут «распылять» вес между дублями.</div>
         </div>
       </div>
 
       <div class="problem-card">
         <div class="problem-card__num">10</div>
         <div class="problem-card__content">
-          <div class="problem-card__title">Две одинаковые формы</div>
-          <div class="problem-card__tags">
-            <span class="tag tag--ux">UX</span>
-            <span class="tag tag--seo">SEO</span>
-          </div>
-          <div class="problem-card__issue"><strong>Проблема:</strong> Два абсолютно идентичных блока формы записи. Дублирование контента — негативный SEO-сигнал. Раздражает пользователя.</div>
-          <div class="problem-card__fix"><strong>Решение:</strong> В Hero — CTA-кнопки (запись + телефон). Внизу — одна расширенная форма с выбором времени звонка и доверительными аргументами рядом.</div>
-          <div class="problem-card__why">Устранение дублирования. Hero не перегружен. Форма внизу конвертирует подготовленных посетителей.</div>
+          <div class="problem-card__title">Исправить грубые HTML-ошибки</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span><span class="tag tag--ux">UX</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> В HTML-коде сайта есть серьёзные ошибки (незакрытые теги, ошибки структуры), которые могут мешать корректной работе сайта в разных браузерах и затруднять индексацию поисковыми системами.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Проверяем страницы через валидатор W3C и исправляем критические ошибки. Сайт будет корректно отображаться во всех браузерах и правильно индексироваться.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">11</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Устранить дубли страниц</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> На сайте есть страницы-дубли (например /individualnye-kappy/ и /individualnye-kappy/individualnye-kappy/). Поисковые системы не понимают, какая из них основная, и могут снижать позиции обеих.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Находим причину появления дублей, устраняем её и настраиваем перенаправление дублей на основные страницы. Каждая страница будет существовать только в одном экземпляре.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">12</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Исправить уведомление о cookies</div>
+          <div class="problem-card__tags"><span class="tag tag--ux">UX</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Уведомление о cookies появляется при каждом посещении сайта, даже если пользователь уже закрывал его. Это раздражает и ухудшает впечатление от сайта.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> После закрытия уведомления сохраняем выбор пользователя. Повторное уведомление не будет показываться минимум 30 дней.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">13</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Обработка URL с двойным слэшем</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Адреса с двойным слэшем (например /uslugi//implantaciya/) открываются как обычные страницы. Это создаёт ещё одну группу дублей и проблемы с индексацией.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Настраиваем сервер: такие адреса будут автоматически перенаправляться на правильный URL или отдавать ошибку 404. Дубли исчезнут.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">14</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Настроить robots.txt</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Файл robots.txt, который управляет индексацией сайта, требует доработки. Без корректных правил поисковые системы могут индексировать технические и служебные страницы, которые не нужны в поиске.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Размещаем в корне сайта корректный файл robots.txt с правилами, которые исключают технические страницы из поиска. Проверяем через Яндекс Вебмастер.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">15</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Добавить тег canonical</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> На страницах отсутствует тег canonical — специальный указатель, который сообщает поисковикам, какой адрес страницы считать основным. Без него дубли страниц конкурируют друг с другом в поиске.</div>
+          <div class="problem-card__fix"><strong>Что делаем:</strong> Добавляем тег canonical на все страницы сайта. Он указывает поисковикам основной адрес каждой страницы, что предотвращает проблемы с дублированием и помогает правильно распределять вес страниц.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY ── -->
+<section class="p-section p-section--light" id="why">
+  <div class="p-container">
+    <h2 class="p-section-title">Зачем нужны доработки</h2>
+    <p class="p-section-sub" style="max-width:900px;">Сайт клиники — это основной инструмент привлечения пациентов из интернета. Чтобы он выполнял эту задачу, необходимы три вещи: сайт должен быть технически исправным, понятным для поисковых систем и полезным для пациентов.</p>
+
+    <div style="max-width:900px; font-size:.92rem; line-height:1.8; color:var(--gray); margin-bottom:48px;">
+      <p style="margin-bottom:16px;"><strong style="color:var(--text);">Техническая часть</strong> — фундамент, без которого остальное не работает. Если сайт открывается по нескольким адресам, содержит пустые страницы или ошибки в коде — поисковые системы тратят ресурсы на обработку «мусора» вместо полезных страниц. Настройка редиректов, canonical, robots.txt и устранение дублей — это наведение порядка, которое даёт поисковикам возможность правильно индексировать сайт.</p>
+      <p style="margin-bottom:16px;"><strong style="color:var(--text);">SEO-оптимизация</strong> — это то, как сайт представлен в поисковой выдаче. Мета-теги (Title и Description) формируют сниппет — «визитную карточку» в результатах поиска. Микроразметка (Schema.org) позволяет отображать адрес, рейтинг и часы работы прямо в выдаче. Open Graph делает ссылки привлекательными в мессенджерах. Всё это напрямую влияет на то, сколько людей кликнет на сайт клиники.</p>
+      <p><strong style="color:var(--text);">Контент и структура страниц</strong> — это то, что видит пациент после перехода на сайт. Полная информация об услугах, прозрачные цены, гарантии, ответы на вопросы, фото результатов — всё это помогает пациенту принять решение и записаться. Чем полнее раскрыта тема на странице, тем выше её позиции в поиске и тем больше доверия она вызывает.</p>
+    </div>
+
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-card__icon">&#128270;</div>
+        <div class="result-card__num" style="font-size:1.3rem; color:var(--red);">Нет Title и Description</div>
+        <div class="result-card__label">Поисковики не понимают, о чём страница. Сниппет в выдаче формируется случайным образом.</div>
+      </div>
+      <div class="result-card">
+        <div class="result-card__icon">&#128202;</div>
+        <div class="result-card__num" style="font-size:1.3rem; color:var(--red);">Нет цен на главной</div>
+        <div class="result-card__label">Пользователь уходит искать прайс к конкурентам. Страница не ранжируется по ценовым запросам.</div>
+      </div>
+      <div class="result-card">
+        <div class="result-card__icon">&#10067;</div>
+        <div class="result-card__num" style="font-size:1.3rem; color:var(--red);">Нет FAQ, статей, гарантий</div>
+        <div class="result-card__label">Возражения пациента не закрываются. Упущен трафик по информационным запросам.</div>
+      </div>
+      <div class="result-card">
+        <div class="result-card__icon">&#128221;</div>
+        <div class="result-card__num" style="font-size:1.3rem; color:var(--red);">Текст без конкретики</div>
+        <div class="result-card__label">«Мы рады пригласить Вас...» — не убеждает. Нет цифр, фактов, доказательств.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- ═══ ДОРАБОТКА ГЛАВНОЙ СТРАНИЦЫ ═══ -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+
+<section class="page-divider">
+  <div class="p-container">
+    <h2>Доработка главной страницы</h2>
+    <p>Переработка структуры и контента — новые блоки, цены, гарантии, FAQ, экспертный контент</p>
+  </div>
+</section>
+
+<!-- ── STRUCTURE MAIN ── -->
+<section class="p-section" id="structure-main">
+  <div class="p-container">
+    <h2 class="p-section-title">Новая структура главной страницы</h2>
+    <p class="p-section-sub">15 блоков вместо 10. Каждый выполняет конкретную задачу — привлечь, убедить, конвертировать.<br>Готовый пример: <a href="https://imperil03.github.io/maestro-stom/" target="_blank" style="color:var(--blue); text-decoration:underline;">imperil03.github.io/maestro-stom</a></p>
+    <div class="structure-list">
+      <div class="structure-item">
+        <div><strong>Шапка (sticky)</strong> — логотип, навигация, 2 телефона, кнопка записи</div>
+      </div>
+      <div class="structure-item">
+        <div><strong>Hero</strong> — H1 с городом, теги услуг, счётчики доверия, CTA-кнопки</div>
+      </div>
+      <div class="structure-item">
+        <div><strong>Услуги</strong> — 9 карточек с ценами и кнопками «Подробнее»</div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Популярные услуги и цены</strong> — таблица 11 позиций с кнопками записи
+          <span class="structure-item__desc">Зачем: пациент сразу видит стоимость основных услуг и может сравнить цены. Таблица с ценами — один из самых востребованных элементов на сайте клиники.</span>
+        </div>
+      </div>
+      <div class="structure-item">
+        <div><strong>О клинике</strong> — факты и цифры вместо рекламного текста</div>
+      </div>
+      <div class="structure-item">
+        <div><strong>Преимущества</strong> — 6 конкретных обещаний вместо абстракций</div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>До / После</strong> — галерея результатов с фильтрами по услугам
+          <span class="structure-item__desc">Зачем: фото реальных работ — главное доказательство качества для пациента. Помогает увидеть результат ещё до визита в клинику.</span>
+        </div>
+      </div>
+      <div class="structure-item">
+        <div><strong>Технологии</strong> — 6 карточек с пользой для пациента</div>
+      </div>
+      <div class="structure-item">
+        <div><strong>Команда</strong> — все 14 врачей, категории, ссылки на профили</div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Гарантии</strong> — 4 карточки с конкретными сроками
+          <span class="structure-item__desc">Зачем: конкретные сроки гарантий (5 лет, 3 года, 2 года) закрывают главное опасение пациента — «а что, если что-то пойдёт не так?». Фиксированная цена исключает неприятные сюрпризы при оплате.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Лицензии и сертификаты</strong>
+          <span class="structure-item__desc">Зачем: подтверждение легальности деятельности клиники. Для медицинского сайта наличие лицензии — обязательный элемент доверия как для пациентов, так и для поисковых систем.</span>
+        </div>
+      </div>
+      <div class="structure-item">
+        <div><strong>Отзывы</strong> — реальные отзывы с 2ГИС и ПроДокторов, рейтинг</div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Полезные статьи</strong> — 3 экспертные статьи от врачей
+          <span class="structure-item__desc">Зачем: экспертный контент от врачей клиники. Статьи привлекают пациентов, которые ищут информацию о лечении, и демонстрируют компетентность специалистов.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>FAQ</strong> — 7 вопросов-ответов + Schema.org разметка
+          <span class="structure-item__desc">Зачем: ответы на самые частые вопросы пациентов. Закрывает типичные сомнения ещё до звонка. Благодаря специальной разметке вопросы могут отображаться прямо в результатах поиска.</span>
+        </div>
+      </div>
+      <div class="structure-item">
+        <div><strong>Форма записи</strong> — с выбором услуги и времени звонка</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEMS ── -->
+<section class="p-section p-section--light" id="problems">
+  <div class="p-container">
+    <h2 class="p-section-title">Что исправляем на главной и почему</h2>
+    <p class="p-section-sub">Конкретные изменения на главной странице с обоснованием каждого решения</p>
+
+    <div class="problems-grid">
+
+      <div class="problem-card">
+        <div class="problem-card__num">1</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Меняем заголовок H1 и добавляем дескриптор</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span><span class="tag tag--ux">UX</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Главный заголовок страницы (H1) — «Цифровая имплантация в Сургуте». Это заголовок одной конкретной услуги, а не клиники в целом. Пациент, попавший на главную страницу, может подумать, что клиника занимается только имплантацией. Поисковые системы тоже получают неправильный сигнал — они воспринимают главную страницу как страницу об имплантации, а не как страницу стоматологической клиники с полным спектром услуг.</div>
+          <div class="problem-card__fix"><strong>Что делаем и зачем:</strong> Меняем H1 на «Стоматологическая клиника «Маэстро»» и добавляем дескриптор: «Полный цикл стоматологической помощи для взрослых и детей: от профилактики до имплантации и ЛОР-лечения. С 2007 года.» Теперь заголовок точно отражает суть клиники — многопрофильный стоматологический центр, а не узкая специализация. Поисковые системы правильно определяют тематику страницы и ранжируют её по общим запросам о стоматологии в Сургуте. Дескриптор сразу сообщает пациенту, что клиника работает с 2007 года и оказывает помощь всем — взрослым и детям.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">2</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Добавляем описания к карточкам услуг</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span><span class="tag tag--conv">Конверсия</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> В разделе «Услуги» — 9 плиток, на каждой только название услуги (например «Имплантация», «Ортодонтия», «Протезирование»). Ни описания, ни пояснения, ни цены. Пациент видит список из одних слов и не понимает, что конкретно предлагает клиника. Поисковые системы тоже получают минимум информации — одно-два слова на плитку не раскрывают тему.</div>
+          <div class="problem-card__fix"><strong>Что делаем и зачем:</strong> К каждой карточке услуги добавляем короткое описание (1–2 предложения), в котором объясняем суть услуги и указываем начальную цену. Например, для имплантации: «Установка имплантов Straumann, Dentium, Osstem. Цифровое планирование, гарантия 5 лет. От 19 900 р.» Это важно по двум причинам. Во-первых, пациент сразу понимает, что включает услуга и сколько это стоит — не нужно уходить на другие страницы за базовой информацией. Во-вторых, описания содержат ключевые сущности темы (названия технологий, материалов, методов), что помогает поисковым системам полнее понимать спектр услуг клиники и показывать страницу по более широкому кругу запросов.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">3</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Переписываем текст «О компании»</div>
+          <div class="problem-card__tags"><span class="tag tag--trust">Доверие</span><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Текст «О компании» начинается с «Мы рады пригласить Вас в нашу клинику...» — это общая фраза, которая не сообщает ничего конкретного. В тексте нет ни одной цифры, ни одного факта. Такой текст не отличает клинику «Маэстро» от любой другой стоматологии. Пациент не получает причин доверять именно этой клинике.</div>
+          <div class="problem-card__fix"><strong>Что делаем и зачем:</strong> Заменяем общие фразы конкретными фактами: год основания (с 2007), количество врачей (14 специалистов), оборудование (цифровые сканеры, томограф), направления работы (взрослая и детская стоматология, ЛОР). Конкретика вызывает доверие — пациент видит, что клиника давно работает, располагает серьёзным оборудованием и широким штатом специалистов. Для поисковых систем это тоже важно: в медицинской тематике факты и цифры являются сигналом экспертности и надёжности источника.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">4</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Переработка всего контента и добавление новых блоков</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span><span class="tag tag--conv">Конверсия</span><span class="tag tag--trust">Доверие</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Главная страница состоит из 10 блоков, большинство из которых содержат минимум информации. Нет таблицы цен, нет фотографий результатов работ, нет гарантий, нет ответов на вопросы пациентов, нет экспертных статей. Пациент получает поверхностное представление о клинике и уходит искать недостающую информацию у конкурентов.</div>
+          <div class="problem-card__fix"><strong>Что делаем и зачем:</strong> Добавляем 7 новых блоков: таблицу с ценами на популярные услуги, галерею «До/После» с фото реальных работ, блок гарантий с конкретными сроками, лицензии и сертификаты, экспертные статьи от врачей, раздел FAQ с ответами на частые вопросы, улучшенную форму записи. Переписываем тексты во всех существующих блоках — убираем шаблонные фразы, добавляем конкретику и факты. Цель — чтобы пациент нашёл ответы на все свои вопросы прямо на главной странице и не уходил к конкурентам. Чем полнее страница раскрывает тему, тем выше её оценивают современные поисковые алгоритмы и тем больше доверия она вызывает у пациентов.</div>
         </div>
       </div>
 
@@ -431,110 +567,275 @@
 </section>
 
 <!-- ── COMPARE ── -->
-<section class="p-section p-section--light" id="compare">
+<section class="p-section" id="compare">
   <div class="p-container">
-    <h2 class="p-section-title">Было / Стало</h2>
+    <h2 class="p-section-title">Было / Стало (главная страница)</h2>
     <p class="p-section-sub">Наглядное сравнение ключевых элементов</p>
     <div class="compare-grid">
       <div class="compare-card compare-card--old">
-        <div class="compare-card__title">🔴 Текущая версия</div>
+        <div class="compare-card__title">Текущая версия</div>
         <ul class="compare-card__list">
-          <li>Title общий, без города</li>
+          <li>H1 — «Цифровая имплантация в Сургуте»</li>
+          <li>Title общий, без города и услуг</li>
           <li>Description отсутствует</li>
-          <li>H1 скрыт через CSS</li>
-          <li>Hero — только имплантация</li>
-          <li>Услуги — иконки без цен</li>
-          <li>Текст — «водянистый», без фактов</li>
+          <li>Карточки услуг — только названия</li>
+          <li>Текст «О компании» — общие фразы</li>
           <li>Нет галереи До/После</li>
           <li>Нет таблицы цен</li>
           <li>Нет гарантий, FAQ, статей</li>
           <li>Нет Schema.org разметки</li>
-          <li>2 одинаковые формы</li>
-          <li>Код Bitrix admin-панели в HTML</li>
+          <li>10 блоков, минимум информации</li>
         </ul>
       </div>
       <div class="compare-card compare-card--new">
-        <div class="compare-card__title">🟢 Новая версия</div>
+        <div class="compare-card__title">Новая версия</div>
         <ul class="compare-card__list">
-          <li>Title с городом + услугами</li>
-          <li>Description 155 символов с УТП</li>
-          <li>H1 видимый, с геозапросом</li>
-          <li>Hero — все услуги + счётчики</li>
-          <li>Карточки с ценами + таблица цен</li>
-          <li>Конкретные факты и цифры</li>
+          <li>H1 — «Стоматологическая клиника «Маэстро»» + дескриптор</li>
+          <li>Title с городом + ключевыми услугами</li>
+          <li>Description с преимуществами клиники</li>
+          <li>Карточки услуг с описаниями и ценами</li>
+          <li>Текст о клинике — факты и цифры</li>
           <li>Галерея До/После с фильтрами</li>
-          <li>Таблица 11 популярных услуг</li>
-          <li>Гарантии + FAQ + 3 статьи</li>
+          <li>Таблица 11 популярных услуг с ценами</li>
+          <li>Гарантии + FAQ + экспертные статьи</li>
           <li>Dentist + FAQPage + OG-теги</li>
-          <li>CTA в Hero + 1 форма внизу</li>
-          <li>Чистый HTML без мусора</li>
+          <li>15 блоков, полное раскрытие темы</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── TABLE ── -->
-<section class="p-section" id="table">
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!-- ═══ ДОРАБОТКА СТРАНИЦЫ УСЛУГИ ═══ -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+
+<section class="page-divider">
   <div class="p-container">
-    <h2 class="p-section-title">Сводная таблица всех изменений</h2>
-    <p class="p-section-sub">19 доработок с оценкой влияния на SEO и конверсию</p>
+    <h2>Доработка структуры страниц услуг</h2>
+    <p>Новая структура для всех страниц услуг. В качестве примера полностью переработана страница «Имплантация зубов» — от 3 блоков до 17.</p>
+  </div>
+</section>
+
+<!-- ── STRUCTURE SERVICE ── -->
+<section class="p-section" id="structure-service">
+  <div class="p-container">
+    <h2 class="p-section-title">Новая структура страниц услуг</h2>
+    <p class="p-section-sub">17 блоков вместо 3. Каждый блок решает конкретную задачу. Структура применяется ко всем страницам услуг — на примере имплантации.<br>Готовый пример: <a href="https://imperil03.github.io/maestro-stom/usluga-implant.html" target="_blank" style="color:var(--blue); text-decoration:underline;">imperil03.github.io/maestro-stom/usluga-implant.html</a></p>
+    <div class="structure-list">
+      <div class="structure-item">
+        <div><strong>Шапка (sticky)</strong> — навигация, телефоны, кнопка записи</div>
+      </div>
+      <div class="structure-item">
+        <div><strong>Хлебные крошки</strong> — Главная / Услуги / Имплантация зубов</div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Вводный блок</strong> — H1, лид-текст, теги методов, счётчики, кнопка записи
+          <span class="structure-item__desc">Зачем: заменяет баннер на внутренней странице. Пациент сразу видит название услуги, доступные методы, ключевые цифры (опыт, количество операций) и может записаться.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Таблица цен</strong> — 11 позиций с разбивкой по системам
+          <span class="structure-item__desc">Зачем: прозрачность стоимости — главное, что ищет пациент на странице услуги. Разбивка по системам (Straumann, Dentium, Osstem) помогает выбрать оптимальный вариант по бюджету.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Преимущества имплантации</strong> — 6 карточек: сравнение с альтернативами
+          <span class="structure-item__desc">Зачем: объясняет пациенту, чем имплантация лучше мостов и съёмных протезов. Конкретные цифры (срок службы 15–25 лет vs 7–10 лет у моста) помогают принять решение.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Показания / Противопоказания</strong> — два столбца с категоризацией
+          <span class="structure-item__desc">Зачем: пациент может определить свою ситуацию ещё до визита. Разделение на абсолютные, относительные и временные противопоказания показывает экспертность клиники.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Преимущества клиники</strong> — 6 карточек с фактами
+          <span class="structure-item__desc">Зачем: конкретные причины выбрать «Маэстро» — три системы имплантов, цифровое планирование, возможность лечения под наркозом, гарантия 5 лет, рассрочка, опытные хирурги.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Этапы имплантации</strong> — 6 шагов с длительностью
+          <span class="structure-item__desc">Зачем: пациент понимает, что его ждёт на каждом этапе и сколько времени это займёт. Снимает неопределённость и страх перед процедурой.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Комментарий врача</strong> — экспертное мнение хирурга-имплантолога
+          <span class="structure-item__desc">Зачем: мнение врача высшей категории вызывает доверие. Рекомендации по выбору системы помогают пациенту определиться ещё до консультации.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Сравнительная таблица систем</strong> — Straumann vs Dentium vs Osstem
+          <span class="structure-item__desc">Зачем: пациент видит разницу между системами по 9 параметрам и понимает, за что платит. Помогает выбрать оптимальный вариант без необходимости искать информацию на других сайтах.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Методы имплантации</strong> — 4 карточки
+          <span class="structure-item__desc">Зачем: описание доступных методов (классическая, одномоментная, All-on-4, одноэтапная) с преимуществами каждого. Пациент узнаёт, какой метод подходит для его ситуации.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Рекомендации после имплантации</strong> — 6 карточек
+          <span class="structure-item__desc">Зачем: практические советы по уходу после операции. Пациент видит, что клиника заботится о результате, а не только о продаже услуги.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Мифы об имплантации</strong> — 5 мифов с опровержениями
+          <span class="structure-item__desc">Зачем: развенчивает главные страхи пациентов — «это больно», «импланты отторгаются», «это опасно». Снимает барьер к записи.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>FAQ</strong> — 8 вопросов + специальная разметка
+          <span class="structure-item__desc">Зачем: ответы на самые частые вопросы об имплантации (боль, сроки, диабет, рассрочка, гарантия). Благодаря разметке вопросы могут отображаться прямо в поисковой выдаче.</span>
+        </div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>До / После</strong> — 3 карточки с привязкой к врачам
+          <span class="structure-item__desc">Зачем: фото реальных результатов работы конкретных врачей клиники. Визуальное доказательство качества, которое нельзя подделать.</span>
+        </div>
+      </div>
+      <div class="structure-item">
+        <div><strong>Врачи-имплантологи</strong> — 3 карточки с категориями</div>
+      </div>
+      <div class="structure-item">
+        <div><strong>Отзывы</strong> — 4 карточки с 2ГИС и ПроДокторов</div>
+      </div>
+      <div class="structure-item structure-item--new">
+        <div><strong>Похожие услуги</strong> — 6 карточек смежных услуг
+          <span class="structure-item__desc">Зачем: пациент видит связанные услуги (протезирование, костная пластика, гигиена) и может продолжить изучение сайта. Удобная навигация между разделами.</span>
+        </div>
+      </div>
+      <div class="structure-item">
+        <div><strong>CTA-секция</strong> — запись на консультацию</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICE PROBLEMS ── -->
+<section class="p-section p-section--light" id="service-problems">
+  <div class="p-container">
+    <h2 class="p-section-title">Зачем нужна новая структура страниц услуг</h2>
+    <p class="p-section-sub">Сейчас на страницах услуг нет никакой структуры — только блок для сплошного текста. Мы предлагаем единую структуру для всех страниц услуг. Страница «Имплантация зубов» подготовлена как пример.</p>
+
+    <div class="problems-grid">
+
+      <div class="problem-card">
+        <div class="problem-card__num">1</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Нет структуры — только сплошной текст</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span><span class="tag tag--ux">UX</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Страницы услуг представляют собой одно текстовое поле без разделения на смысловые блоки. Нет таблиц цен, нет этапов лечения, нет показаний и противопоказаний, нет ответов на вопросы. Пациент получает стену текста и не находит нужную информацию.</div>
+          <div class="problem-card__fix"><strong>Зачем нужна структура:</strong> Разделение на блоки (цены, этапы, показания, FAQ, мифы, рекомендации и др.) позволяет пациенту быстро найти ответ на свой вопрос — не читая всю страницу целиком. Каждый блок закрывает конкретную потребность: кто-то пришёл за ценой, кто-то хочет узнать этапы, кто-то сомневается и ищет ответы на вопросы. Для поисковых систем это тоже важно: современные алгоритмы оценивают полноту раскрытия темы. Страница с 3 блоками текста проигрывает конкурентам, у которых тема раскрыта в 10–15 блоках.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">2</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Нет цен на страницах услуг</div>
+          <div class="problem-card__tags"><span class="tag tag--conv">Конверсия</span><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> На страницах услуг отсутствуют цены. Пациент, который ищет стоимость конкретной процедуры, не находит её и уходит к конкурентам, где цены указаны открыто.</div>
+          <div class="problem-card__fix"><strong>Что это даёт:</strong> Таблица цен с разбивкой по вариантам — самый востребованный элемент на странице услуги. Пациент видит порядок стоимости и может выбрать подходящий вариант, не звоня в клинику. Прозрачность цен повышает доверие и увеличивает количество записей. Поисковые системы тоже учитывают наличие цен — страницы с указанием стоимости ранжируются выше по ценовым запросам.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">3</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Тема раскрыта поверхностно</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span><span class="tag tag--trust">Доверие</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Текст на страницах услуг не отвечает на основные вопросы пациента: как проходит лечение? какие есть варианты? кому можно, кому нельзя? сколько длится? что делать после? Пациент вынужден искать ответы на сторонних сайтах.</div>
+          <div class="problem-card__fix"><strong>Что это даёт:</strong> Полное раскрытие темы (этапы, методы, показания, противопоказания, сравнение вариантов, рекомендации после лечения) позволяет пациенту получить всю информацию в одном месте. Ему не нужно уходить на другие сайты — клиника становится источником экспертной информации. Это повышает доверие к клинике и позиции в поиске: современные алгоритмы (Яндекс YATI, Google BERT) оценивают именно тематическую полноту и глубину раскрытия темы.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">4</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Нет элементов доверия и убеждения</div>
+          <div class="problem-card__tags"><span class="tag tag--conv">Конверсия</span><span class="tag tag--trust">Доверие</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> На страницах услуг нет комментариев врачей, нет фото результатов «До/После», нет развенчивания мифов и страхов, нет FAQ. Пациент приходит с сомнениями и уходит с теми же сомнениями — ничто на странице их не снимает.</div>
+          <div class="problem-card__fix"><strong>Что это даёт:</strong> Блоки «Комментарий врача», «До/После», «Мифы», «FAQ» работают как система убеждения. Комментарий врача — это экспертное мнение, которому доверяют. Фото «До/После» — наглядное доказательство результата. Мифы снимают страхи («больно», «отторгается», «опасно»). FAQ отвечает на конкретные вопросы. Вместе эти блоки превращают сомневающегося посетителя в пациента, который записывается на приём.</div>
+        </div>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-card__num">5</div>
+        <div class="problem-card__content">
+          <div class="problem-card__title">Нет разметки и правильных мета-тегов</div>
+          <div class="problem-card__tags"><span class="tag tag--seo">SEO</span></div>
+          <div class="problem-card__issue"><strong>Сейчас:</strong> Страницы услуг не имеют корректных Title и Description, отсутствует специальная разметка (Schema.org). В поисковой выдаче страницы отображаются с некорректными заголовками и случайными описаниями — проигрывают конкурентам.</div>
+          <div class="problem-card__fix"><strong>Что это даёт:</strong> Корректные мета-теги с названием услуги, городом и ценой делают сниппет в поисковой выдаче информативным и привлекательным. Специальная разметка (FAQ, хлебные крошки, информация о процедуре) позволяет поисковым системам показывать расширенные сниппеты с вопросами-ответами — такие результаты занимают больше места в выдаче и получают больше кликов.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICE TABLE ── -->
+<section class="p-section" id="table-service">
+  <div class="p-container">
+    <h2 class="p-section-title">Сводная таблица изменений (на примере страницы имплантации)</h2>
+    <p class="p-section-sub">19 доработок с оценкой влияния — по этому шаблону будут переработаны все страницы услуг</p>
     <div style="overflow-x:auto;">
     <table class="summary-table">
       <thead>
         <tr><th>#</th><th>Элемент</th><th>Было</th><th>Стало</th><th>SEO</th><th>Конверсия</th></tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>Title</td><td>Общий</td><td>С городом + услугами</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
-        <tr><td>2</td><td>Description</td><td>Нет</td><td>155 сим. с УТП</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
-        <tr><td>3</td><td>Schema.org</td><td>Нет</td><td>Dentist + FAQPage</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
-        <tr><td>4</td><td>OG-теги</td><td>Нет</td><td>Полный набор</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
-        <tr><td>5</td><td>H1</td><td>Скрытый</td><td>Видимый + город</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
-        <tr><td>6</td><td>Hero</td><td>1 слайд</td><td>Все услуги + счётчики</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
-        <tr><td>7</td><td>Услуги</td><td>Иконки</td><td>Карточки с ценами</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
-        <tr><td>8</td><td><strong>Таблица цен</strong></td><td>Нет</td><td>11 позиций</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
-        <tr><td>9</td><td>О клинике</td><td>Рекл. текст</td><td>Факты + цифры</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
-        <tr><td>10</td><td>Преимущества</td><td>Абстракции</td><td>Конкретные обещания</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
-        <tr><td>11</td><td><strong>До/После</strong></td><td>Нет</td><td>Галерея с фильтрами</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
-        <tr><td>12</td><td>Технологии</td><td>5 слайдов</td><td>6 карточек с пользой</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
-        <tr><td>13</td><td>Команда</td><td>Фото + имя</td><td>+ категория + ссылки</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
-        <tr><td>14</td><td><strong>Гарантии</strong></td><td>Нет</td><td>4 карточки с сроками</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
-        <tr><td>15</td><td><strong>Лицензии</strong></td><td>Нет</td><td>Блок документов</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
-        <tr><td>16</td><td>Отзывы</td><td>Без разметки</td><td>+ AggregateRating</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
-        <tr><td>17</td><td><strong>Статьи</strong></td><td>Нет</td><td>3 карточки блога</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
-        <tr><td>18</td><td><strong>FAQ</strong></td><td>Нет</td><td>7 вопросов + разметка</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
-        <tr><td>19</td><td>Формы</td><td>2 одинаковые</td><td>CTA + 1 форма</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>1</td><td>Title</td><td>«Имплантология»</td><td>С городом + ценой</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>2</td><td>Description</td><td>«Все услуги клиники»</td><td>155 сим. с УТП</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>3</td><td>Schema.org</td><td>Только BreadcrumbList</td><td>+ MedicalProcedure + FAQPage</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
+        <tr><td>4</td><td>H1</td><td>Скрытый</td><td>Видимый + геозапрос</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
+        <tr><td>5</td><td><strong>Вводный блок</strong></td><td>Баннер без текста</td><td>Лид + теги + счётчики + форма</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>6</td><td><strong>Таблица цен</strong></td><td>Нет</td><td>11 позиций с системами</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>7</td><td><strong>Показания</strong></td><td>Нет</td><td>2 столбца с категоризацией</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
+        <tr><td>8</td><td><strong>Преимущества</strong></td><td>Нет</td><td>6 карточек с фактами</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>9</td><td><strong>Этапы</strong></td><td>Нет</td><td>6 шагов с длительностью</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>10</td><td><strong>Комментарий врача</strong></td><td>Нет</td><td>Мнение врача высшей категории</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>11</td><td><strong>Сравнение систем</strong></td><td>Текстовое описание</td><td>Таблица 9 параметров</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>12</td><td><strong>Методы</strong></td><td>Нет</td><td>4 карточки методов</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
+        <tr><td>13</td><td><strong>Рекомендации</strong></td><td>Нет</td><td>6 карточек</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
+        <tr><td>14</td><td><strong>Мифы</strong></td><td>Нет</td><td>5 мифов + факты</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>15</td><td><strong>FAQ</strong></td><td>Нет</td><td>8 вопросов + FAQPage</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>16</td><td><strong>До / После</strong></td><td>Нет</td><td>3 карточки с врачами</td><td><span class="impact impact--high">Высокое</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>17</td><td>Врачи</td><td>3 слайда</td><td>3 карточки + категория</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
+        <tr><td>18</td><td>Отзывы</td><td>4 слайда</td><td>4 карточки с источниками</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--high">Высокое</span></td></tr>
+        <tr><td>19</td><td>Технические</td><td>Bitrix-код</td><td>Чистый HTML</td><td><span class="impact impact--medium">Среднее</span></td><td><span class="impact impact--medium">Среднее</span></td></tr>
       </tbody>
     </table>
     </div>
   </div>
 </section>
 
-<!-- ── RESULTS ── -->
-<section class="p-section p-section--light" id="results">
+<!-- ── GOALS ── -->
+<section class="p-section p-section--light" id="goals">
   <div class="p-container">
-    <h2 class="p-section-title">Ожидаемый эффект</h2>
-    <p class="p-section-sub">Прогнозные показатели на основе отраслевых данных для стоматологических сайтов</p>
+    <h2 class="p-section-title">Чего мы хотим добиться</h2>
+    <p class="p-section-sub">Цели, к которым ведут все перечисленные доработки</p>
+
     <div class="results-grid">
       <div class="result-card">
-        <div class="result-card__icon">📈</div>
-        <div class="result-card__num">+40–70%</div>
-        <div class="result-card__label">Рост видимости в поиске за счёт расширения тематики, Schema.org, FAQ, таблицы цен и статей</div>
+        <div class="result-card__icon">&#128200;</div>
+        <div class="result-card__num" style="font-size:1.3rem;">Видимость в поиске</div>
+        <div class="result-card__label">Расширить тематическое покрытие, получить расширенные сниппеты за счёт разметки, FAQ, таблиц цен и экспертного контента</div>
       </div>
       <div class="result-card">
-        <div class="result-card__icon">👆</div>
-        <div class="result-card__num">+20–35%</div>
-        <div class="result-card__label">Рост CTR в выдаче за счёт расширенных сниппетов (звёзды, FAQ, адрес)</div>
+        <div class="result-card__icon">&#128070;</div>
+        <div class="result-card__num" style="font-size:1.3rem;">Клики из поиска</div>
+        <div class="result-card__label">Привлечь больше переходов из поисковой выдачи за счёт информативных заголовков, рейтинга и FAQ в сниппете</div>
       </div>
       <div class="result-card">
-        <div class="result-card__icon">📉</div>
-        <div class="result-card__num">−15–25%</div>
-        <div class="result-card__label">Снижение отказов за счёт информативного первого экрана и цифр доверия</div>
+        <div class="result-card__icon">&#128203;</div>
+        <div class="result-card__num" style="font-size:1.3rem;">Удержание на сайте</div>
+        <div class="result-card__label">Снизить процент уходов за счёт полной информации: цены, этапы, мифы, ответы на вопросы — всё на одной странице</div>
       </div>
       <div class="result-card">
-        <div class="result-card__icon">📋</div>
-        <div class="result-card__num">+20–40%</div>
-        <div class="result-card__label">Рост конверсии формы за счёт ценностного предложения и доверительных блоков</div>
+        <div class="result-card__icon">&#128222;</div>
+        <div class="result-card__num" style="font-size:1.3rem;">Записи на приём</div>
+        <div class="result-card__label">Увеличить долю посетителей, которые записываются на консультацию, за счёт прозрачных цен, гарантий и доверительных элементов</div>
       </div>
     </div>
   </div>
@@ -544,7 +845,6 @@
 <footer class="p-footer">
   <div class="p-container">
     <p><strong>Подготовлено для клиники «Маэстро»</strong> · Сургут · Март 2026</p>
-    <p style="margin-top:8px;">Все доработки реализованы в файле <code>index.html</code> · Подробный SEO-отчёт: <code>SEO_ANALYSIS.md</code></p>
   </div>
 </footer>
 
